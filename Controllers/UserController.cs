@@ -96,4 +96,10 @@ public class UserController : Controller
             userlist.Remove(user);
             return RedirectToAction(nameof(Index));
         }
+
+    public ActionResult Search(string query)
+    {
+    var results = userlist.Where(u => u.Name.Contains(query) || u.Email.Contains(query)).ToList();
+    return View(results);
+}
 }
